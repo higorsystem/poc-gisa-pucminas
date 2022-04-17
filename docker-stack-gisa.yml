@@ -41,17 +41,17 @@ services:
     command: sh -c "/wait && dotnet GISA.Authentication.WebApi.dll"
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:2311
-      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - APP_INSIGHTS_INSTR_KEY=SUA_CREDENCIAL
       - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
       - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
       - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
       - AWS_JWT_VALID_MINUTES=60
-      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=SUA_CREDENCIAL
+      - AWS_SECRET_ACCESS_KEY=SUA_CREDENCIAL
       - AWS_DEFAULT_REGION=sa-east-1
       - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
       - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
-      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - COGNITO_APP_CLIENT_SECRET=SUA_CREDENCIAL
       - WAIT_AFTER=10
     networks:
       - backend
@@ -69,17 +69,17 @@ services:
       - REDIS_HOST=redis
       - WAIT_HOSTS=sqlserver:1433
       - CONNECTION_STRING=Server=sqlserver; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
-      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - APP_INSIGHTS_INSTR_KEY=SUA_CREDENCIAL
       - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
       - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
       - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
       - AWS_JWT_VALID_MINUTES=60
-      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=SUA_CREDENCIAL
+      - AWS_SECRET_ACCESS_KEY=SUA_CREDENCIAL
       - AWS_DEFAULT_REGION=sa-east-1
       - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
       - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
-      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - COGNITO_APP_CLIENT_SECRET=SUA_CREDENCIAL
       - WAIT_AFTER=10
     networks:
       - backend
@@ -93,17 +93,17 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:6000
       - WAIT_HOSTS=rabbitmq:5672,sqlserver:1433
       - CONNECTION_STRING=Server=sqlserver; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
-      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - APP_INSIGHTS_INSTR_KEY=SUA_CREDENCIAL
       - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
       - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
       - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
       - AWS_JWT_VALID_MINUTES=60
-      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=SUA_CREDENCIAL
+      - AWS_SECRET_ACCESS_KEY=SUA_CREDENCIAL
       - AWS_DEFAULT_REGION=sa-east-1
       - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
       - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
-      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - COGNITO_APP_CLIENT_SECRET=SUA_CREDENCIAL
       - WAIT_AFTER=10
     networks:
       - backend

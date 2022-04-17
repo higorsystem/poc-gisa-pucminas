@@ -4,13 +4,13 @@ services:
   gisa_authentication:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
-      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
-      - AWS_SECRET_ACCESS_KEY=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
+      - APP_INSIGHTS_INSTR_KEY=SUA_CREDENCIAL
+      - AWS_ACCESS_KEY_ID=SUA_CREDENCIAL
+      - AWS_SECRET_ACCESS_KEY=SUA_CREDENCIAL
       - AWS_DEFAULT_REGION=sa-east-1
       - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
       - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
-      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - COGNITO_APP_CLIENT_SECRET=SUA_CREDENCIAL
       - CONNECTION_STRING=Server=host.docker.internal; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
     ports:
       - "80"
@@ -20,13 +20,13 @@ services:
   gisa_micapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
-      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
-      - AWS_SECRET_ACCESS_KEY=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
+      - APP_INSIGHTS_INSTR_KEY=SUA_CREDENCIAL
+      - AWS_ACCESS_KEY_ID=SUA_CREDENCIAL
+      - AWS_SECRET_ACCESS_KEY=SUA_CREDENCIALv
       - AWS_DEFAULT_REGION=sa-east-1
       - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
       - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
-      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - COGNITO_APP_CLIENT_SECRET=SUA_CREDENCIAL
       - CONNECTION_STRING=Server=host.docker.internal; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
     ports:
       - "80"
@@ -38,4 +38,3 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
-

@@ -1,7 +1,6 @@
 ﻿{
   "ConnectionStrings": {
     "ConnectionString.LocalDb": "Server=(localdb)\\mssqllocaldb;Database=GISADatabaseMIC",
-    "ConnectionString": "Server=127.0.0.1; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=123456",
-    "ConnectionString.Azure": ""
+    "ConnectionString": "Server=127.0.0.1; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!"    
   }
 }

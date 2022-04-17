@@ -8,7 +8,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "CONNECTION_STRING": "Server=localhost; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!",
-        "APP_INSIGHTS_INSTR_KEY": "abd74bbc-44a4-4725-9838-13890489239e"
+        "APP_INSIGHTS_INSTR_KEY": "SUA_CREDENCIAL"
       },
       "applicationUrl": "http://localhost:5001"
     },

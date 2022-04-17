@@ -24,19 +24,19 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "CONNECTION_STRING": "Server=localhost; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!",
-        "APP_INSIGHTS_INSTR_KEY": "abd74bbc-44a4-4725-9838-13890489239e"
+        "APP_INSIGHTS_INSTR_KEY": "SUA_CREDENCIAL"
       },
       "applicationUrl": "https://localhost:5000",
       "ApplicationInsights": {
-        "InstrumentationKey": "abd74bbc-44a4-4725-9838-13890489239e"
+        "InstrumentationKey": "SUA_CREDENCIAL"
       },
       "AWS": {
         "Region": "sa-east-1",
-        "AccessKey": "AKIARQYA547GJHAQR5MU",
-        "SecretKey": "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",
+        "AccessKey": "SUA_CREDENCIAL",
+        "SecretKey": "SUA_CREDENCIAL",
         "UserPoolClientId": "25meblt7cemgtp30gpa9i7tg1d",
         "UserPoolId": "sa-east-1_Bc7W9doXH",
-        "UserPoolClientSecret": "1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf",
+        "UserPoolClientSecret": "SUA_CREDENCIAL",
         "Key": "C1CF4B7DC4C4175B6618DE4F55CA4",
         "Issuer": "sa-east-1_Bc7W9doXH",
         "Audience": "25meblt7cemgtp30gpa9i7tg1d",
@@ -53,15 +53,15 @@
       },
       "publishAllPorts": true,
       "ApplicationInsights": {
-        "InstrumentationKey": "abd74bbc-44a4-4725-9838-13890489239e"
+        "InstrumentationKey": "SUA_CREDENCIAL"
       },
       "AWS": {
         "Region": "sa-east-1",
-        "AccessKey": "AKIARQYA547GJHAQR5MU",
-        "SecretKey": "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",
+        "AccessKey": "SUA_CREDENCIAL",
+        "SecretKey": "SUA_CREDENCIAL",
         "UserPoolClientId": "25meblt7cemgtp30gpa9i7tg1d",
         "UserPoolId": "sa-east-1_Bc7W9doXH",
-        "UserPoolClientSecret": "1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf",
+        "UserPoolClientSecret": "SUA_CREDENCIAL",
         "Key": "C1CF4B7DC4C4175B6618DE4F55CA4",
         "Issuer": "sa-east-1_Bc7W9doXH",
         "Audience": "25meblt7cemgtp30gpa9i7tg1d",
