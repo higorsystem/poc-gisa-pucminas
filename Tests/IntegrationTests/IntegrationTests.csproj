@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+
+		<IsPackable>false</IsPackable>
+
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Bogus" Version="33.1.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+		<PackageReference Include="coverlet.collector" Version="3.1.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\GISA.Domain\GISA.Domain.csproj" />
+		<ProjectReference Include="..\..\GISA.MIC.Repository\GISA.MIC.Repository.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="testsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

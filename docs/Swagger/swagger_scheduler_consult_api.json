@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GISA - Agendamento de consultas medicas - API (Development)",
+    "description": "API de integração do módulo de informações cadastrais - MIC",
+    "contact": {
+      "name": "Jorge Higor Mendes dos Santos",
+      "email": "jorge.higor@gmail.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/schedule-consult": {
+      "post": {
+        "tags": [
+          "Consult"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ConsultDto": {
+        "type": "object",
+        "properties": {
+          "associateId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "specialtyId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "providerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "consultDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "issuedBy": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

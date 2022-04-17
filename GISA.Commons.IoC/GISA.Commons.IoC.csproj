@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Configurations>Debug;Release</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Extensions\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.11" />
+		<PackageReference Include="Dapr.AspNetCore" Version="1.4.0" />
+		<PackageReference Include="Dapr.Client" Version="1.4.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+		<PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\GISA.Domain\GISA.Domain.csproj" />
+	  <ProjectReference Include="..\GISA.MIC.Application\GISA.MIC.Application.csproj" />
+	  <ProjectReference Include="..\GISA.MIC.Repository\GISA.MIC.Repository.csproj" />
+	</ItemGroup>
+
+</Project>

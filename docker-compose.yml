@@ -1,0 +1,252 @@
+version: '3.4'
+
+services:
+
+  ###############################################################################
+  # SQL Server - Config. do banco de dados.
+  ###############################################################################
+  sqlserver:
+    image: gisa_mssqlhelper:latest
+    command: sh -c "/wait && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'Passw0rd!' -i /scripts/dbcreate.sql & /opt/mssql/bin/sqlservr"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Passw0rd!
+      - MSSQL_PID=Standard
+      - WAIT_HOSTS=localhost:1433
+      - WAIT_AFTER=5
+    networks:
+      - backend
+    ports:
+      - 1433:1433 
+    volumes:
+      - gisadatabasemic:/var/opt/mssql
+      - ./dbcreate.sql:/scripts/dbcreate.sql
+
+  ###############################################################################
+  # REDIS - Config. do controle de cache da aplicacao.
+  ###############################################################################
+  redis:
+    image: redis:6.2.6
+    networks:
+      - backend
+    ports:
+      - 6379:6379 
+
+  redis-commander:
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    networks:
+      - backend
+    image: rediscommander/redis-commander
+    ports:
+      - 82:8081
+
+  #################################################################################################
+  # gisa_authentication app - Config. inicial da api de autenticacao + Dapr Sidecar.
+  #################################################################################################
+  gisa_authentication:
+    image: ${DOCKER_REGISTRY-}gisa_authentication
+    # volumes:
+    #   - $HOME/.aws:/root/.aws
+    build:
+      context: .
+      dockerfile: GISA.Authentication/GISA.Authentication.WebApi/Dockerfile
+    environment:
+      #- ASPNETCORE_URLS=http://0.0.0.0:5000
+      - WAIT_AFTER=10
+      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
+      - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
+      - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
+      - AWS_JWT_VALID_MINUTES=60
+      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=sa-east-1
+      - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
+      - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
+      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+    networks:
+      - backend
+    depends_on:
+      - sqlserver
+   
+  gisa_authentication-dapr:
+    image: "daprio/daprd:latest"
+    command: [ "./daprd", 
+     "-app-id", "gisa_authentication", 
+     "-app-port", "80",
+     "-dapr-http-port", "3600",
+     "-placement-host-address", "placement:50006",
+     "-components-path", "/components" ]
+    volumes:
+      - "./components/:/components"
+    depends_on:
+      - gisa_authentication
+    network_mode: "service:gisa_authentication"
+
+  #################################################################################################
+  # gisa_micapi app - Config. inicial da api de modulo de informacoes cadastrais + Dapr Sidecar.
+  #################################################################################################
+  gisa_micapi:
+    image: ${DOCKER_REGISTRY-}gisa_micapi
+    # volumes:
+    #   - $HOME/.aws:/root/.aws
+    build:
+      context: .
+      dockerfile: GISA.MIC.WebApi/Dockerfile
+    environment:
+      #- ASPNETCORE_URLS=http://0.0.0.0:5001
+      - API_DESCRIPTION=Gestao integrada da saude do associado
+      - DAPR=Yes
+      - REDIS_HOST=redis
+      - WAIT_HOSTS=sqlserver:1433
+      - WAIT_AFTER=10
+      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
+      - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
+      - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
+      - AWS_JWT_VALID_MINUTES=60
+      - CONNECTION_STRING=Server=host.docker.internal; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
+      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=sa-east-1
+      - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
+      - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
+      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - backend
+
+  gisa_micapi-dapr:
+    image: "daprio/daprd:latest"
+    command: [ "./daprd",
+     "-app-id", "gisa_micapi",
+     "-app-port", "80",
+     "-dapr-http-port", "3601",
+     "-placement-host-address", "placement:50006",
+     "-components-path", "/components" ]
+    volumes:
+      - "./components/:/components"
+    depends_on:
+      - gisa_micapi
+    network_mode: "service:gisa_micapi"
+
+  ########################################################################################################
+  # gisa_consultschedulerapi app - Config. inicial da api de agendamento de consultas + Dapr Sidecar.
+  ########################################################################################################
+  gisa_consultschedulerapi:
+    image: ${DOCKER_REGISTRY-}gisa_consultschedulerapi
+    build:
+      context: .
+      dockerfile: GISA.MessageProcessor/Dockerfile
+    environment:
+      - API_DESCRIPTION=Agendamento de consultas medicas - API
+      - WAIT_HOSTS=rabbitmq:5672,sqlserver:1433
+      - WAIT_AFTER=10
+      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - CONNECTION_STRING=Server=host.docker.internal; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - backend
+
+  gisa_consultschedulerapi-dapr:
+    image: "daprio/daprd:latest"
+    command: [ "./daprd",
+     "-app-id", "gisa_consultschedulerapi",
+     "-app-port", "80",
+     "-dapr-http-port", "3602",
+     "-placement-host-address", "placement:50006",
+     "-components-path", "/components" ]
+    volumes:
+      - "./components/:/components"
+    depends_on:
+      - gisa_consultschedulerapi
+    network_mode: "service:gisa_consultschedulerapi"
+
+  #################################################################################################
+  # gisa_choreographer component - Config. inicial da api de coreografia + Dapr Sidecar.
+  #################################################################################################
+  #gisa_choreographer:
+  #  image: ${DOCKER_REGISTRY-}gisa_choreographer
+  #  build:
+  #    context: .
+  #    dockerfile: GISA.NotificationService/Dockerfile
+  #  environment:
+  #    - WAIT_HOSTS=rabbitmq:5672
+  #    - WAIT_AFTER=10
+  #  depends_on:
+  #    - rabbitmq
+  #  networks:
+  #    - backend
+
+  #gisa_choreographer-dapr:
+  #  image: "daprio/daprd:latest"
+  #  command: [ "./daprd",
+  #   "-app-id", "gisa_choreographer",
+  #   "-app-port", "80",
+  #   "-dapr-http-port", "3603",
+  #   "-placement-host-address", "placement:50006",
+  #   "-components-path", "/components"]
+  #  volumes:
+  #    - "./components/:/components"
+  #  depends_on:
+  #    - gisa_choreographer
+  #  network_mode: "service:gisa_choreographer"
+
+  ############################
+  # Dapr placement service
+  ############################
+  placement:
+    image: "daprio/dapr"
+    command: ["./placement", "-port", "50006"]
+    ports:
+      - "50006:50006"
+    networks:
+      - backend
+
+  ############################
+  # RabbitMQ component
+  ############################
+  rabbitmq:
+    image: rabbitmq:3.9.8-management-alpine
+    networks:
+      - backend
+    ports:
+      - 81:15672
+
+  ############################
+  # MailServer component
+  ############################
+  mailserver:
+    image: maildev/maildev:latest
+    networks:
+      - backend
+    ports:
+      - 4025:25
+      - 4000:80
+
+  ############################
+  # Zipkin component
+  ############################
+  openzipkin:
+    image: openzipkin/zipkin
+    networks:
+      - backend
+    ports:
+      - 9411:9411
+
+networks:
+  backend:
+    driver: overlay
+    attachable: true
+
+volumes:
+  gisadatabasemic:

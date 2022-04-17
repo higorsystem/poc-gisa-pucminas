@@ -1,0 +1,168 @@
+version: "3.8"
+
+services:
+  sqlserver:
+    image: higormendes/gisa_mssqlhelper:latest
+    command: sh -c "/wait && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'Passw0rd!' -i /scripts/dbcreate.sql & /opt/mssql/bin/sqlservr"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Passw0rd!
+      - MSSQL_PID=Standard
+      - WAIT_HOSTS=localhost:1433
+      - WAIT_AFTER=5
+    networks:
+      - backend
+    ports:
+      - 1433:1433 #TODO: Remove
+    volumes:
+      - gisadatabasemic:/var/opt/mssql
+      - ./dbcreate.sql:/scripts/dbcreate.sql
+
+  redis:
+    image: redis:6.2.6
+    networks:
+      - backend
+    ports:
+      - 6379:6379 #TODO: Remove
+
+  redis-commander:
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    image: rediscommander/redis-commander
+    networks:
+      - backend
+    ports:
+      - 82:8081
+
+  gisa_authentication:
+    image: gisa_authentication:latest
+    command: sh -c "/wait && dotnet GISA.Authentication.WebApi.dll"
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:2311
+      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
+      - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
+      - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
+      - AWS_JWT_VALID_MINUTES=60
+      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=sa-east-1
+      - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
+      - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
+      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - WAIT_AFTER=10
+    networks:
+      - backend
+
+  gisa_micapi:
+    image: gisa_micapi:latest
+    command: sh -c "/wait && dapr run --app-id gisa_micapi --app-port 5001 --dapr-http-port 3601 --dapr-grpc-port 60001 --config /dapr/config/config.yaml --components-path /dapr dotnet GISA.MIC.WebApi.dll"
+    depends_on:
+      - sqlserver
+      - redi
+      - rabbitmq
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5001
+      - DAPR=Yes
+      - REDIS_HOST=redis
+      - WAIT_HOSTS=sqlserver:1433
+      - CONNECTION_STRING=Server=sqlserver; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
+      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
+      - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
+      - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
+      - AWS_JWT_VALID_MINUTES=60
+      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=sa-east-1
+      - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
+      - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
+      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - WAIT_AFTER=10
+    networks:
+      - backend
+
+  gisa_consultschedulerapi:
+    image: gisa_consultschedulerapi:latest
+    command: sh -c "/wait && dapr run --app-id gisa_consultschedulerapi --app-port 6000 --dapr-http-port 3602 --dapr-grpc-port 60002 --config /dapr/config/config.yaml --components-path /dapr dotnet GISA.MessageProcessor.dll"
+    depends_on:
+      - rabbitmq
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:6000
+      - WAIT_HOSTS=rabbitmq:5672,sqlserver:1433
+      - CONNECTION_STRING=Server=sqlserver; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!
+      - APP_INSIGHTS_INSTR_KEY=abd74bbc-44a4-4725-9838-13890489239e
+      - AWS_JWT_KEY=C1CF4B7DC4C4175B6618DE4F55CA4
+      - AWS_JWT_AUDIENCE=25meblt7cemgtp30gpa9i7tg1d
+      - AWS_JWT_ISSUER=sa-east-1_Bc7W9doXH
+      - AWS_JWT_VALID_MINUTES=60
+      - AWS_ACCESS_KEY_ID=AKIARQYA547GJHAQR5MU
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=sa-east-1
+      - COGNITO_APP_CLIENT_ID=25meblt7cemgtp30gpa9i7tg1d
+      - COGNITO_USER_POOL_ID=sa-east-1_Bc7W9doXH
+      - COGNITO_APP_CLIENT_SECRET=1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf
+      - WAIT_AFTER=10
+    networks:
+      - backend
+
+  gisa_choreographer:
+    image: gisa_choreographer:latest
+    command: sh -c "/wait && dapr run --app-id gisa_choreographer --app-port 7000 --dapr-http-port 3603 --dapr-grpc-port 60003 --config /dapr/config/config.yaml --components-path /dapr python server.py"
+    depends_on:
+      - rabbitmq
+    environment:
+      - WAIT_HOSTS=rabbitmq:5672
+      - WAIT_AFTER=10
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3.9.8-management-alpine
+    networks:
+      - backend
+    ports:
+      - 81:15672
+
+  mailserver:
+    image: maildev/maildev:latest
+    networks:
+      - backend
+    ports:
+      - 4025:25
+      - 4000:80
+
+  openzipkin:
+    image: openzipkin/zipkin
+    networks:
+      - backend
+    ports:
+      - 9411:9411
+
+  nginx:
+    image: nginx:1.21.3-alpine
+    depends_on:
+      - gisa_micapi
+      - redis-commander
+      - rabbitmq
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+      - ./nginx:/etc/nginx
+      - ./cert:/cert
+
+networks:
+  frontend:
+    driver: overlay
+  backend:
+    driver: overlay
+
+volumes:
+  gisadatabasemic:

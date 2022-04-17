@@ -1,0 +1,62 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- main
+
+pool:
+  name: 'Default'
+  demands:
+  - Agent.Name -equals GISA-AGENT
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  displayName: Build Project
+  jobs:  
+  - job: Build
+    displayName: Build
+    steps:
+    - task: FileTransform@1
+      inputs:
+        folderPath: '$(System.DefaultWorkingDirectory)'
+        targetFiles: '**/docker-compose-tokenized.yml'
+        encoding: 'auto'
+        writeBOM: true
+        verbosity: 'detailed'
+        actionOnMissing: 'fail'
+        keepToken: false
+        tokenPrefix: '${'
+        tokenSuffix: '}'
+        useLegacyPattern: false
+        enableTelemetry: true
+    - task: CmdLine@2
+      inputs:
+        script: 'mkdir $(System.DefaultWorkingDirectory)/TestResults'
+    - task: DockerCompose@0
+      inputs:
+        dockerComposeFile: '**/docker-compose-tokenized.yml'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'up --abort-on-container-exit --build'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'VSTest'
+        testResultsFiles: '**/*.trx'
+        failTaskOnFailedTests: true
+        testRunTitle: 'GISAIntegrationTests'
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/TestResults/**/coverage.cobertura.xml'
+        additionalCodeCoverageFiles: '$(System.DefaultWorkingDirectory)/TestResults/**'
+    - task: CmdLine@2
+      inputs:
+        script: 'docker rm -f sqlserver-$(Build.BuildId) gisaintegrationtests-$(Build.BuildId) docker image prune -f'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(build.artifactstagingdirectory)'
+        publishLocation: 'pipeline'

@@ -1,0 +1,5 @@
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'GISADatabaseMIC')
+  BEGIN
+    CREATE DATABASE GISADatabaseMIC
+  END
+GO

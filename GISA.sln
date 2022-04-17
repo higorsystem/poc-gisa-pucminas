@@ -1,0 +1,197 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31825.309
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{583ADECC-DCC8-4ED2-ABB4-EA30D20CE060}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - EntryPoint", "01 - EntryPoint", "{818B17CF-8998-4BC8-A66D-E1CB83699DC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Domain", "03 - Domain", "{21F645F1-DA1A-4771-9E89-56DD5A72071A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Infrastructure", "04 - Infrastructure", "{1AFDBCEC-9080-448F-8295-BFC3C13E4D4E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Domain", "GISA.Domain\GISA.Domain.csproj", "{7E19781D-B4A7-4C9A-8533-D499D32FE647}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{7CB31327-297E-4BA0-83E0-B4540E13099D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.MIC.Repository", "GISA.MIC.Repository\GISA.MIC.Repository.csproj", "{ED027A10-D5EE-4631-9E89-4A9346A6861E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.MIC.WebApi", "GISA.MIC.WebApi\GISA.MIC.WebApi.csproj", "{91EF8A4F-4723-4CA2-BEC1-E18C11F65B28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{FE2F7B08-A00F-45D6-964B-3D19C3238D17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{77E1B236-81CE-4880-85E3-3D2F79B1BFE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solutions Items", "{9AA993DB-785D-49DD-8483-9E234566053C}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		dbcreate.sql = dbcreate.sql
+		docker-compose-dev.yml = docker-compose-dev.yml
+		docker-compose-tokenized.yml = docker-compose-tokenized.yml
+		docker-compose.yml = docker-compose.yml
+		docker-stack-dev-macos.yml = docker-stack-dev-macos.yml
+		docker-stack.yml = docker-stack.yml
+		Dockerfile.aspnetcore = Dockerfile.aspnetcore
+		Dockerfile.mssql = Dockerfile.mssql
+		Dockerfile.mssql.macos = Dockerfile.mssql.macos
+		Dockerfile.netcore = Dockerfile.netcore
+		Dockerfile.python = Dockerfile.python
+		nginx.conf = nginx.conf
+		nginx.conf.azure = nginx.conf.azure
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{9D6352B0-C1DE-4C56-B9FF-79868A34D658}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{EE5D138F-A943-48FC-AC49-4FBE2A192F9A}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\email.yaml = dapr\email.yaml
+		dapr\pubsub.yaml = dapr\pubsub.yaml
+		dapr\secrets-file.yaml = dapr\secrets-file.yaml
+		dapr\secrets.json = dapr\secrets.json
+		dapr\statestore.yaml_ = dapr\statestore.yaml_
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{6D74D3FF-DBEA-4984-879B-34BBAFF33B26}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\config\config.yaml = dapr\config\config.yaml
+		dapr\config\ratelimit-config.yaml = dapr\config\ratelimit-config.yaml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.MessageProcessor", "GISA.MessageProcessor\GISA.MessageProcessor.csproj", "{22D8930B-31F4-4E46-9368-0FE4E126ED71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalTests", "Tests\FunctionalTests\FunctionalTests.csproj", "{3596DDAC-513D-46B6-AC31-5027403FB3C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "Tests\IntegrationTests\IntegrationTests.csproj", "{6E057D96-CA14-49D3-A612-F14F6F6EC44C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "Tests\UnitTests\UnitTests.csproj", "{B096A0AC-205A-45F3-B974-E1EC5FE2F2C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.AuthorizationService", "GISA.AuthorizationService\GISA.AuthorizationService.csproj", "{5FA6AED5-7ADD-4987-9017-DD740985B744}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{6B508F0D-8C7E-470E-B222-F13424A52013}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Commons.IoC", "GISA.Commons.IoC\GISA.Commons.IoC.csproj", "{520259BA-E453-41A2-853B-95A4B05BCD15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Authentication.Domain", "GISA.Authentication\GISA.Authentication.Domain\GISA.Authentication.Domain.csproj", "{74B0EE92-C0A8-4ECF-B03E-EAB02507A0A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Authentication.Application", "GISA.Authentication\GISA.Authentication.Application\GISA.Authentication.Application.csproj", "{51E53DBA-0262-4BC0-AB7C-AECD1E71A7C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Authentication.Infra.IoC", "GISA.Authentication\GISA.Authentication.Infra.IoC\GISA.Authentication.Infra.IoC.csproj", "{484F209D-72EE-4A52-A730-E02109A90625}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Authentication.WebApi", "GISA.Authentication\GISA.Authentication.WebApi\GISA.Authentication.WebApi.csproj", "{3E1C0606-8D64-4560-806D-CB40BD4B771A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Application", "02 - Application", "{CBA44110-4777-4870-9005-0DE060456CA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{7371949A-309D-412D-A4BF-AD76D7981F0E}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ED01EFB1-9507-4E5E-9EFC-7561D5872621}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GISA.Commons.SDK", "GISA.Commons.SDK\GISA.Commons.SDK.csproj", "{7EE86528-CD35-42D3-B42A-24A5E1F1E520}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GISA.MIC.Application", "GISA.MIC.Application\GISA.MIC.Application.csproj", "{24B64F42-9D4B-4AF4-A877-62115AEE5AC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E19781D-B4A7-4C9A-8533-D499D32FE647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E19781D-B4A7-4C9A-8533-D499D32FE647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E19781D-B4A7-4C9A-8533-D499D32FE647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E19781D-B4A7-4C9A-8533-D499D32FE647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED027A10-D5EE-4631-9E89-4A9346A6861E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED027A10-D5EE-4631-9E89-4A9346A6861E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED027A10-D5EE-4631-9E89-4A9346A6861E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED027A10-D5EE-4631-9E89-4A9346A6861E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91EF8A4F-4723-4CA2-BEC1-E18C11F65B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91EF8A4F-4723-4CA2-BEC1-E18C11F65B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91EF8A4F-4723-4CA2-BEC1-E18C11F65B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91EF8A4F-4723-4CA2-BEC1-E18C11F65B28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22D8930B-31F4-4E46-9368-0FE4E126ED71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D8930B-31F4-4E46-9368-0FE4E126ED71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D8930B-31F4-4E46-9368-0FE4E126ED71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D8930B-31F4-4E46-9368-0FE4E126ED71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3596DDAC-513D-46B6-AC31-5027403FB3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3596DDAC-513D-46B6-AC31-5027403FB3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3596DDAC-513D-46B6-AC31-5027403FB3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3596DDAC-513D-46B6-AC31-5027403FB3C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E057D96-CA14-49D3-A612-F14F6F6EC44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E057D96-CA14-49D3-A612-F14F6F6EC44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E057D96-CA14-49D3-A612-F14F6F6EC44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E057D96-CA14-49D3-A612-F14F6F6EC44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B096A0AC-205A-45F3-B974-E1EC5FE2F2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B096A0AC-205A-45F3-B974-E1EC5FE2F2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B096A0AC-205A-45F3-B974-E1EC5FE2F2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B096A0AC-205A-45F3-B974-E1EC5FE2F2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA6AED5-7ADD-4987-9017-DD740985B744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA6AED5-7ADD-4987-9017-DD740985B744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA6AED5-7ADD-4987-9017-DD740985B744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA6AED5-7ADD-4987-9017-DD740985B744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520259BA-E453-41A2-853B-95A4B05BCD15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520259BA-E453-41A2-853B-95A4B05BCD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520259BA-E453-41A2-853B-95A4B05BCD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520259BA-E453-41A2-853B-95A4B05BCD15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B0EE92-C0A8-4ECF-B03E-EAB02507A0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B0EE92-C0A8-4ECF-B03E-EAB02507A0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B0EE92-C0A8-4ECF-B03E-EAB02507A0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B0EE92-C0A8-4ECF-B03E-EAB02507A0A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E53DBA-0262-4BC0-AB7C-AECD1E71A7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E53DBA-0262-4BC0-AB7C-AECD1E71A7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E53DBA-0262-4BC0-AB7C-AECD1E71A7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E53DBA-0262-4BC0-AB7C-AECD1E71A7C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{484F209D-72EE-4A52-A730-E02109A90625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484F209D-72EE-4A52-A730-E02109A90625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484F209D-72EE-4A52-A730-E02109A90625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484F209D-72EE-4A52-A730-E02109A90625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E1C0606-8D64-4560-806D-CB40BD4B771A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E1C0606-8D64-4560-806D-CB40BD4B771A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E1C0606-8D64-4560-806D-CB40BD4B771A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E1C0606-8D64-4560-806D-CB40BD4B771A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED01EFB1-9507-4E5E-9EFC-7561D5872621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED01EFB1-9507-4E5E-9EFC-7561D5872621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED01EFB1-9507-4E5E-9EFC-7561D5872621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED01EFB1-9507-4E5E-9EFC-7561D5872621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE86528-CD35-42D3-B42A-24A5E1F1E520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE86528-CD35-42D3-B42A-24A5E1F1E520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE86528-CD35-42D3-B42A-24A5E1F1E520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE86528-CD35-42D3-B42A-24A5E1F1E520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B64F42-9D4B-4AF4-A877-62115AEE5AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B64F42-9D4B-4AF4-A877-62115AEE5AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B64F42-9D4B-4AF4-A877-62115AEE5AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B64F42-9D4B-4AF4-A877-62115AEE5AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E19781D-B4A7-4C9A-8533-D499D32FE647} = {21F645F1-DA1A-4771-9E89-56DD5A72071A}
+		{7CB31327-297E-4BA0-83E0-B4540E13099D} = {1AFDBCEC-9080-448F-8295-BFC3C13E4D4E}
+		{ED027A10-D5EE-4631-9E89-4A9346A6861E} = {7CB31327-297E-4BA0-83E0-B4540E13099D}
+		{91EF8A4F-4723-4CA2-BEC1-E18C11F65B28} = {FE2F7B08-A00F-45D6-964B-3D19C3238D17}
+		{FE2F7B08-A00F-45D6-964B-3D19C3238D17} = {818B17CF-8998-4BC8-A66D-E1CB83699DC7}
+		{77E1B236-81CE-4880-85E3-3D2F79B1BFE0} = {1AFDBCEC-9080-448F-8295-BFC3C13E4D4E}
+		{9D6352B0-C1DE-4C56-B9FF-79868A34D658} = {1AFDBCEC-9080-448F-8295-BFC3C13E4D4E}
+		{EE5D138F-A943-48FC-AC49-4FBE2A192F9A} = {9AA993DB-785D-49DD-8483-9E234566053C}
+		{6D74D3FF-DBEA-4984-879B-34BBAFF33B26} = {EE5D138F-A943-48FC-AC49-4FBE2A192F9A}
+		{22D8930B-31F4-4E46-9368-0FE4E126ED71} = {9D6352B0-C1DE-4C56-B9FF-79868A34D658}
+		{3596DDAC-513D-46B6-AC31-5027403FB3C5} = {583ADECC-DCC8-4ED2-ABB4-EA30D20CE060}
+		{6E057D96-CA14-49D3-A612-F14F6F6EC44C} = {583ADECC-DCC8-4ED2-ABB4-EA30D20CE060}
+		{B096A0AC-205A-45F3-B974-E1EC5FE2F2C2} = {583ADECC-DCC8-4ED2-ABB4-EA30D20CE060}
+		{5FA6AED5-7ADD-4987-9017-DD740985B744} = {77E1B236-81CE-4880-85E3-3D2F79B1BFE0}
+		{6B508F0D-8C7E-470E-B222-F13424A52013} = {1AFDBCEC-9080-448F-8295-BFC3C13E4D4E}
+		{520259BA-E453-41A2-853B-95A4B05BCD15} = {6B508F0D-8C7E-470E-B222-F13424A52013}
+		{74B0EE92-C0A8-4ECF-B03E-EAB02507A0A8} = {21F645F1-DA1A-4771-9E89-56DD5A72071A}
+		{51E53DBA-0262-4BC0-AB7C-AECD1E71A7C9} = {CBA44110-4777-4870-9005-0DE060456CA3}
+		{484F209D-72EE-4A52-A730-E02109A90625} = {7371949A-309D-412D-A4BF-AD76D7981F0E}
+		{3E1C0606-8D64-4560-806D-CB40BD4B771A} = {FE2F7B08-A00F-45D6-964B-3D19C3238D17}
+		{7371949A-309D-412D-A4BF-AD76D7981F0E} = {1AFDBCEC-9080-448F-8295-BFC3C13E4D4E}
+		{7EE86528-CD35-42D3-B42A-24A5E1F1E520} = {6B508F0D-8C7E-470E-B222-F13424A52013}
+		{24B64F42-9D4B-4AF4-A877-62115AEE5AC4} = {CBA44110-4777-4870-9005-0DE060456CA3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5940A0E-D293-4D32-B2E4-52D60A8C14AB}
+	EndGlobalSection
+EndGlobal

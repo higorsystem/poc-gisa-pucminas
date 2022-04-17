@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>2b38e851-d55f-40a8-9f9f-7a7f96b9c39c</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<ApplicationInsightsResourceId>/subscriptions/12ffd39b-97b1-477e-9538-bad659ae1567/resourceGroups/gisa-integration/providers/microsoft.insights/components/gisa-mic-api</ApplicationInsightsResourceId>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Amazon.AspNetCore.Identity.Cognito" Version="2.0.3" />
+		<PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.0.3" />
+		<PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.5.1.6" />
+		<PackageReference Include="Dapr.AspNetCore" Version="1.4.0" />
+		<PackageReference Include="Dapr.Client" Version="1.4.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GISA.Commons.IoC\GISA.Commons.IoC.csproj" />
+		<ProjectReference Include="..\GISA.Commons.SDK\GISA.Commons.SDK.csproj" />
+		<ProjectReference Include="..\GISA.Domain\GISA.Domain.csproj" />
+		<ProjectReference Include="..\GISA.MIC.Application\GISA.MIC.Application.csproj" />
+		<ProjectReference Include="..\GISA.MIC.Repository\GISA.MIC.Repository.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+
+</Project>

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:18617",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "LOCAL"
+      }
+    },
+    "GISA.Authentication.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "Server=localhost; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!",
+        "APP_INSIGHTS_INSTR_KEY": "abd74bbc-44a4-4725-9838-13890489239e"
+      },
+      "applicationUrl": "https://localhost:5000",
+      "ApplicationInsights": {
+        "InstrumentationKey": "abd74bbc-44a4-4725-9838-13890489239e"
+      },
+      "AWS": {
+        "Region": "sa-east-1",
+        "AccessKey": "AKIARQYA547GJHAQR5MU",
+        "SecretKey": "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",
+        "UserPoolClientId": "25meblt7cemgtp30gpa9i7tg1d",
+        "UserPoolId": "sa-east-1_Bc7W9doXH",
+        "UserPoolClientSecret": "1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf",
+        "Key": "C1CF4B7DC4C4175B6618DE4F55CA4",
+        "Issuer": "sa-east-1_Bc7W9doXH",
+        "Audience": "25meblt7cemgtp30gpa9i7tg1d",
+        "DurationInMinutes": 60
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "Server=localhost; Database=GISADatabaseMIC; MultipleActiveResultSets=true; User=sa; Password=Passw0rd!"
+      },
+      "publishAllPorts": true,
+      "ApplicationInsights": {
+        "InstrumentationKey": "abd74bbc-44a4-4725-9838-13890489239e"
+      },
+      "AWS": {
+        "Region": "sa-east-1",
+        "AccessKey": "AKIARQYA547GJHAQR5MU",
+        "SecretKey": "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",
+        "UserPoolClientId": "25meblt7cemgtp30gpa9i7tg1d",
+        "UserPoolId": "sa-east-1_Bc7W9doXH",
+        "UserPoolClientSecret": "1pbbvvc2ag0um3brhaf3jrqs1fefbofhsmtgfuj9urhtadjsjqf",
+        "Key": "C1CF4B7DC4C4175B6618DE4F55CA4",
+        "Issuer": "sa-east-1_Bc7W9doXH",
+        "Audience": "25meblt7cemgtp30gpa9i7tg1d",
+        "DurationInMinutes": 60
+      }
+    }
+  }
+}

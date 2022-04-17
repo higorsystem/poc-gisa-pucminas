@@ -1,0 +1,41 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- main
+
+pool:
+  #Azure Hosted Agent
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Azure Container Registry - GISA'
+        repository: 'gisanotificationservice'
+        command: 'buildAndPush'
+        Dockerfile: 'GISA.NotificationService/Dockerfile'
+        buildContext: '$(Build.SourcesDirectory)'
+        tags: '$(Build.SourceVersion)'
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: |
+          docker-stack-azure-tokenized.yml
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'

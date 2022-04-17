@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>c1859f62-5882-4b60-af1f-5abfe617551f</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<ApplicationInsightsResourceId>/subscriptions/12ffd39b-97b1-477e-9538-bad659ae1567/resourceGroups/gisa-integration/providers/microsoft.insights/components/gisa-mic-api</ApplicationInsightsResourceId>
+		<DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+		<DockerfileContext>..\..</DockerfileContext>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GISA.Authentication.Application\GISA.Authentication.Application.csproj" />
+		<ProjectReference Include="..\GISA.Authentication.Infra.IoC\GISA.Authentication.Infra.IoC.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

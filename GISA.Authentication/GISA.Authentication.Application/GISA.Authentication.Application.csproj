@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Amazon.AspNetCore.Identity.Cognito" Version="2.0.3" />
+    <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.0.3" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GISA.Commons.SDK\GISA.Commons.SDK.csproj" />
+    <ProjectReference Include="..\GISA.Authentication.Domain\GISA.Authentication.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

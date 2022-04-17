@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapr.AspNetCore" Version="1.4.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GISA.Commons.IoC\GISA.Commons.IoC.csproj" />
+		<ProjectReference Include="..\GISA.Domain\GISA.Domain.csproj" />
+		<ProjectReference Include="..\GISA.MIC.Repository\GISA.MIC.Repository.csproj" />
+	</ItemGroup>
+
+
+</Project>
