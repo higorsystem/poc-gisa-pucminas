@@ -1,4 +1,4 @@
-# TCC - Protótipo de arquitetura de sistemas distrubuídos - GISA
+# TCC - Protótipo de arquitetura de sistemas distribuídos - GISA
 
 <h3> GISA - Gestão Integral da Saúde do Associado </h3>
 
